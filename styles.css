@@ -1,0 +1,13 @@
+body {
+    background-image: url("background.jpeg");
+    background-size: 100%;
+    font-family: sans-serif;
+
+}
+
+
+table, th, td {
+  border: 1px solid black;
+}
+
+
