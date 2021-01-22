@@ -1,7 +1,8 @@
 <HTML>
 <HEAD>
   <link rel="stylesheet" href="styles.css">
-  <TITLE> Słynni szachiści </TITLE>
+  <link rel="icon" href="icon.jpg">
+  <TITLE> Chess-dating </TITLE>
 </HEAD>
 <BODY>
   <a href="https://students.mimuw.edu.pl/~bs418386/bd/home.php">
@@ -35,14 +36,14 @@ if (!$conn) {
 
 <?PHP
 $stmt = oci_parse($conn, 
-  "SELECT S.ID, S.IMIE , S.NAZWISKO, O.NAZWA FROM OTWARCIE O, SLAWNY_SZACHISTA S WHERE S.ULUBIONE_OTWARCIE = O.ID ORDER BY S.ID");
+  "SELECT S.ID, S.IMIE , S.NAZWISKO, O.NAZWA FROM  SLAWNY_SZACHISTA S LEFT JOIN OTWARCIE O ON (S.ULUBIONE_OTWARCIE = O.ID) ORDER BY S.ID");
 
 // Wykonywanie wyrazenia SQL-owego
 oci_execute($stmt, OCI_NO_AUTO_COMMIT);
 ?>
 
 <div style="height: 90%;  overflow: auto; float: left;">
-  <table class="center">
+  <table class="center" style='font-size:30px'>
     <tr>
       <th>ID</th>
       <th>Imię</th>

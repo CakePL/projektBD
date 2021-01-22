@@ -1,7 +1,8 @@
 <HTML>
 <HEAD>
   <link rel="stylesheet" href="styles.css">
-  <TITLE> Użytkownicy </TITLE>
+  <link rel="icon" href="icon.jpg">
+  <TITLE> Chess-dating </TITLE>
 </HEAD>
 <BODY>
   <a href="https://students.mimuw.edu.pl/~bs418386/bd/home.php">
@@ -34,8 +35,8 @@ $stmt = oci_parse($conn,
 oci_execute($stmt, OCI_NO_AUTO_COMMIT);
 ?>
 
-<div style="height: 90%;  overflow: auto; float: left;">
-  <table class="center">
+<div style="height: 90%;  overflow: auto; float: left; ">
+  <table class="center"  style='font-size:25px'>
     <tr>
       <th>ID</th>
       <th>Nick</th>
@@ -49,12 +50,10 @@ oci_execute($stmt, OCI_NO_AUTO_COMMIT);
     </tr>
 
     <?PHP
-    // OCI_BOTH sprawia, tablica jest zarowno asocjacyjna, jak i zwykla
     while (($row = oci_fetch_array($stmt, OCI_BOTH))) {
        echo "<tr>";
        echo "<td>${row['ID']}</td>\n";
        echo "<td>${row['NICK']}</td>\n";
-       //echo "<td>${row['IMIE']}</td>\n";
        echo "<td>${row['RANKING']}</td>\n";
        echo "<td>${row['PREFEROWANY_KOLOR']}</td>\n";
        echo "<td>${row['NAZWA']}</td>\n";

@@ -1,7 +1,8 @@
 <HTML>
 <HEAD>
   <link rel="stylesheet" href="styles.css">
-  <TITLE> Lista Użytkowników </TITLE>
+  <link rel="icon" href="icon.jpg">
+  <TITLE> Chess-dating </TITLE>
 </HEAD>
 <BODY>
   <a href="https://students.mimuw.edu.pl/~bs418386/bd/home.php">
