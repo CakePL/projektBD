@@ -7,7 +7,9 @@
 <BODY>
   <a href="https://students.mimuw.edu.pl/~bs418386/bd/home.php">
   Strona główna </a>
-<H1> Użytkownicy </H1>
+  <a href="https://students.mimuw.edu.pl/~bs418386/bd/uzytkownicy.php">
+  Lista użytkowników</a>
+<H1> Profil Użytkownika </H1>
 
 <?PHP
 
@@ -30,35 +32,12 @@ if (!$conn) {
 
 
 
-<?php
+<?PHP
 
-$sql_text = "SELECT U.ID, U.NICK, U.RANKING, U.PREFEROWANY_KOLOR, O.NAZWA, S.IMIE, S.NAZWISKO  FROM UZYTKOWNIK U, OTWARCIE O, SLAWNY_SZACHISTA S WHERE U.ULUBIONE_OTWARCIE = O.ID AND U.ULUBIONY_SZACHISTA = S.ID";
+$sql_text = "SELECT U.ID, U.NICK, U.RANKING, U.PREFEROWANY_KOLOR, O.NAZWA, S.IMIE, S.NAZWISKO  FROM UZYTKOWNIK U, OTWARCIE O, SLAWNY_SZACHISTA S WHERE U.ULUBIONE_OTWARCIE = O.ID AND U.ULUBIONY_SZACHISTA = S.ID AND U.NICK=\" ";
 
-if ($_GET['sort'] == 'ID')
-{
-    $sql_text .= " ORDER BY U.ID";
-}
-elseif ($_GET['sort'] == 'NICK')
-{
-    $sql_text .= " ORDER BY U.NICK";
-}
-elseif ($_GET['sort'] == 'RANKING')
-{
-    $sql_text .= " ORDER BY U.RANKING";
-}
-elseif($_GET['sort'] == 'NAZWA')
-{
-    $sql_text .= " ORDER BY O.NAZWA";
-}
-elseif($_GET['sort'] == 'IMIE')
-{
-    $sql_text .= " ORDER BY S.IMIE";
-}
-elseif($_GET['sort'] == 'NAZWISKO')
-{
-    $sql_text .= " ORDER BY  S.NAZWISKO";
-}
-?>
+$sql_text.=$_REQUEST['nick'];
+$sql_text.="\"";
 
 
 
@@ -87,7 +66,7 @@ oci_execute($stmt, OCI_NO_AUTO_COMMIT);
     while (($row = oci_fetch_array($stmt, OCI_BOTH))) {
        echo "<tr>";
        echo "<td>${row['ID']}</td>\n";
-       echo "<td><a href=\"uzytkownik.php?nick=". ${row['NICK']} ."\">${row['NICK']}</a></td>\n";
+       echo '<td><a href="'."uzytkownik.php?nick=".${row['NICK']}. '">${row['NICK']}</a></td>\n';
        echo "<td>${row['RANKING']}</td>\n";
        echo "<td>${row['PREFEROWANY_KOLOR']}</td>\n";
        echo "<td>${row['NAZWA']}</td>\n";
@@ -111,52 +90,6 @@ oci_close($conn);
 
 
 
-<div style="float: right;"><H3> 
-Wyszukaj Przeciwnika</H3>
-<form method = "post">
-
-  <label for="WIEK">Preferowany wiek przeciwnika</label>
-  <input type="number" name="WIEK"><br> 
-
-  <label for="PLEC">Płeć przeciwnika</label>
-  <input type="text" name="PLEC"><br>
-
-  <label for="RANKING">Preferowany ranking przeciwnika</label>
-  <input type="number" name="RANKING"><br>
-
-  <label for="PREFEROWANY_KOLOR">Preferowany Kolor Przeciwnika</label>
-  <input type="text" name="PREFEROWANY_KOLOR"><br>
-
-  <label for="ULUBIONE_OTWARCIE">Ulubione Otwarcie</label>
-  <input type="text" name="ULUBIONE_OTWARCIE"><br>
-
-  <label for="ULUBIONY_SZACHISTA">Ulubiony Szachista</label>
-  <input type="text" name="ULUBIONY_SZACHISTA"><br>
-
-  <label for="PREF_PORA">Preferowana pora rozgrywek</label>
-  <input type="text" name="PREF_PORA"><br>
-
-
-
-
-
-  <button type="submit" formaction="wyszukiwanie.php">Wyszukaj</button>
-
-</form>
-</div>
-
-
 
 </BODY>
 </HTML>
-
-
-
-
-
-
-
-
-
-
-
