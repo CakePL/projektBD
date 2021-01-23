@@ -7,7 +7,9 @@
 <BODY>
   <a href="https://students.mimuw.edu.pl/~bs418386/bd/home.php">
   Strona główna </a>
-<H1> Użytkownicy </H1>
+  <a href="https://students.mimuw.edu.pl/~bs418386/bd/uzytkownicy.php">
+  Lista użytkowników</a>
+<H1>Dopasowani Użytkownicy </H1>
 
 <?PHP
 
@@ -26,13 +28,18 @@ if (!$conn) {
 }
 ?>
 
-
-
-
-
 <?php
 
-$sql_text = "SELECT U.ID, U.NICK, U.RANKING, U.PREFEROWANY_KOLOR, O.NAZWA, S.IMIE, S.NAZWISKO  FROM UZYTKOWNIK U, OTWARCIE O, SLAWNY_SZACHISTA S WHERE U.ULUBIONE_OTWARCIE = O.ID AND U.ULUBIONY_SZACHISTA = S.ID";
+$WIEK = $_REQUEST['WIEK'];
+$PLEC = $_REQUEST['PLEC'];
+$RANKING = $_REQUEST['RANKING'];
+$PREFEROWANY_KOLOR = $_REQUEST['PREFEROWANY_KOLOR'];
+$ULUBIONE_OTWARCIE = $_REQUEST['ULUBIONE_OTWARCIE'];
+$ULUBIONY_SZACHISTA = $_REQUEST['ULUBIONY_SZACHISTA '];
+$PREF_PORA = $_REQUEST['PREF_PORA'];
+
+
+$sql_text = "SELECT U.ID, U.NICK, U.RANKING, U.PREFEROWANY_KOLOR, O.NAZWA, S.IMIE, S.NAZWISKO  FROM UZYTKOWNIK U, OTWARCIE O, SLAWNY_SZACHISTA S WHERE U.ULUBIONE_OTWARCIE = O.ID AND U.ULUBIONY_SZACHISTA = S.ID AND (U.WIEK = '" .$WIEK. "' OR U.PLEC = '" .$PLEC. "' OR U.RANKING = '" .$RANKING. "' OR U.PREFEROWANY_KOLOR = '" .$PREFEROWANY_KOLOR. "' OR U.ULUBIONE_OTWARCIE = '" .$ULUBIONE_OTWARCIE. "' OR U.ULUBIONY_SZACHISTA = '" .$ULUBIONY_SZACHISTA. "'  OR U.PREF_PORA = '" .$PREF_PORA. "')";
 
 if ($_GET['sort'] == 'ID')
 {
@@ -65,7 +72,6 @@ elseif($_GET['sort'] == 'NAZWISKO')
 <?PHP
 $stmt = oci_parse($conn, $sql_text);
 
-// Wykonywanie wyrazenia SQL-owego
 oci_execute($stmt, OCI_NO_AUTO_COMMIT);
 ?>
 
@@ -108,43 +114,6 @@ oci_execute($stmt, OCI_NO_AUTO_COMMIT);
 <?PHP
 oci_close($conn);
 ?>
-
-
-
-<div style="float: right;"><H3> 
-Wyszukaj Przeciwnika</H3>
-<form method = "post">
-
-  <label for="WIEK">Preferowany wiek przeciwnika</label>
-  <input type="number" name="WIEK"><br> 
-
-  <label for="PLEC">Płeć przeciwnika</label>
-  <input type="text" name="PLEC"><br>
-
-  <label for="RANKING">Preferowany ranking przeciwnika</label>
-  <input type="number" name="RANKING"><br>
-
-  <label for="PREFEROWANY_KOLOR">Preferowany Kolor Przeciwnika</label>
-  <input type="text" name="PREFEROWANY_KOLOR"><br>
-
-  <label for="ULUBIONE_OTWARCIE">Ulubione Otwarcie</label>
-  <input type="text" name="ULUBIONE_OTWARCIE"><br>
-
-  <label for="ULUBIONY_SZACHISTA">Ulubiony Szachista</label>
-  <input type="text" name="ULUBIONY_SZACHISTA"><br>
-
-  <label for="PREF_PORA">Preferowana pora rozgrywek</label>
-  <input type="text" name="PREF_PORA"><br>
-
-
-
-
-
-  <button type="submit" formaction="wyszukiwanie.php">Wyszukaj</button>
-
-</form>
-</div>
-
 
 
 </BODY>

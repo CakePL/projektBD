@@ -80,7 +80,8 @@ oci_execute($stmt, OCI_NO_AUTO_COMMIT);
 </div>
 
 
-<div style="float: right;">
+<div style="float: right;"><H3> 
+Dodaj Użytkownika</H3>
 <form method = "post">
 
   <label for="NICK">Nick</label>
