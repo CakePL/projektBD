@@ -28,8 +28,9 @@ if (!$conn) {
 
 
 <?PHP
-$stmt = oci_parse($conn, 
-  "SELECT U.ID, U.NICK, U.IMIE AS IM, U.NAZWISKO AS NA, U.WIEK, U.KONTAKT, U.RANKING,  U.PREFEROWANY_KOLOR, O.NAZWA, S.IMIE, S.NAZWISKO  FROM UZYTKOWNIK U, OTWARCIE O, SLAWNY_SZACHISTA S WHERE U.ULUBIONE_OTWARCIE = O.ID AND U.ULUBIONY_SZACHISTA = S.ID ORDER BY U.ID");
+$sql_text = "SELECT U.ID, U.NICK, U.IMIE AS IM, U.NAZWISKO AS NA, U.WIEK, U.KONTAKT, U.RANKING,  U.PREFEROWANY_KOLOR, O.NAZWA, S.IMIE, S.NAZWISKO  FROM UZYTKOWNIK U, OTWARCIE O, SLAWNY_SZACHISTA S WHERE U.ULUBIONE_OTWARCIE = O.ID AND U.ULUBIONY_SZACHISTA = S.ID ORDER BY U.ID";
+
+$stmt = oci_parse($conn, $sql_text);
 
 oci_execute($stmt, OCI_NO_AUTO_COMMIT);
 ?>
@@ -94,6 +95,8 @@ oci_execute($stmt, OCI_NO_AUTO_COMMIT);
   <label for="WIEK">Wiek</label>
   <input type="number" name="WIEK"><br>
 
+  <label for="PLEC">Płeć</label>
+  <input type="number" name="PLEC"><br>
 
   <label for="KONTAKT">Kontakt</label>
   <input type="KONTAKT" name="KONTAKT"><br>
