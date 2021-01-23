@@ -27,9 +27,6 @@ if (!$conn) {
 ?>
 
 
-
-
-
 <?php
 
 $sql_text = "SELECT U.ID, U.NICK, U.RANKING, U.PREFEROWANY_KOLOR, O.NAZWA, S.IMIE, S.NAZWISKO  FROM UZYTKOWNIK U, OTWARCIE O, SLAWNY_SZACHISTA S WHERE U.ULUBIONE_OTWARCIE = O.ID AND U.ULUBIONY_SZACHISTA = S.ID";
@@ -85,16 +82,15 @@ oci_execute($stmt, OCI_NO_AUTO_COMMIT);
 
     <?PHP
     while (($row = oci_fetch_array($stmt, OCI_BOTH))) {
+       $txt = "<td><a href=\"uzytkownik.php?nick=". ${row['NICK']} ."\">${row['NICK']}</a></td>\n";
        echo "<tr>";
        echo "<td>${row['ID']}</td>\n";
-       echo "<td><a href=\"uzytkownik.php?nick=". ${row['NICK']} ."\">${row['NICK']}</a></td>\n";
+       echo $txt;
        echo "<td>${row['RANKING']}</td>\n";
        echo "<td>${row['PREFEROWANY_KOLOR']}</td>\n";
        echo "<td>${row['NAZWA']}</td>\n";
        echo "<td>${row['IMIE']}</td>\n";
        echo "<td>${row['NAZWISKO']}</td>\n";
-
-       
 
        echo "</tr>\n";
 
@@ -136,10 +132,6 @@ Wyszukaj Przeciwnika</H3>
   <label for="PREF_PORA">Preferowana pora rozgrywek</label>
   <input type="text" name="PREF_PORA"><br>
 
-
-
-
-
   <button type="submit" formaction="wyszukiwanie.php">Wyszukaj</button>
 
 </form>
@@ -149,14 +141,3 @@ Wyszukaj Przeciwnika</H3>
 
 </BODY>
 </HTML>
-
-
-
-
-
-
-
-
-
-
-

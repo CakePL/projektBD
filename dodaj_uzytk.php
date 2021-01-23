@@ -15,7 +15,7 @@ $PREF_RANKING_PRZECIWNIKA = $_REQUEST['PREF_RANKING_PRZECIWNIKA'];
 $PREF_WIEK_PRZECIWNIKA = $_REQUEST['PREF_WIEK_PRZECIWNIKA'];
 
 
-$sqltext = "INSERT INTO UZYTKOWNIK VALUES (SELECT max(ID)+1 FROM UZYTKOWNIK, '" . $NICK ."', '" .$KONTAKT. "','" .$WIEK."', '" .$IMIE."', '".$NAZWISKO."',  '" .$PLEC."', '" .$RANKING."', '" . $PREFEROWANY_KOLOR ."', 7, 5, '" .$PREF_PORA."', '" .$PREF_RANKING_PRZECIWNIKA."', '" .$PREF_WIEK_PRZECIWNIKA."')";
+$sqltext = "INSERT INTO UZYTKOWNIK VALUES ((SELECT max(ID)+1 FROM UZYTKOWNIK), '" . $NICK ."', '" .$KONTAKT. "','" .$WIEK."', '" .$IMIE."', '".$NAZWISKO."',  '" .$PLEC."', '" .$RANKING."', '" . $PREFEROWANY_KOLOR ."', 7, 5, '" .$PREF_PORA."', '" .$PREF_RANKING_PRZECIWNIKA."', '" .$PREF_WIEK_PRZECIWNIKA."')";
 
 session_start();
 
@@ -38,12 +38,4 @@ oci_close($conn);
 
 header("Location:". $_SERVER['HTTP_REFERER']);
 ?>
-
-
-
-
-
-
-
-
 

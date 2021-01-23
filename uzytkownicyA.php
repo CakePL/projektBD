@@ -97,7 +97,7 @@ Dodaj Użytkownika</H2>
   <input type="number" name="WIEK"><br>
 
   <label for="PLEC">Płeć</label>
-  <input type="number" name="PLEC"><br>
+  <input type="text" name="PLEC"><br>
 
   <label for="KONTAKT">Kontakt</label>
   <input type="KONTAKT" name="KONTAKT"><br>
