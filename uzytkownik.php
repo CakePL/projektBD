@@ -29,19 +29,14 @@ if (!$conn) {
 ?>
 
 
-
-
-
 <?PHP
 
-$sql_text = "SELECT U.ID, U.NICK, U.RANKING, U.PREFEROWANY_KOLOR, O.NAZWA, S.IMIE, S.NAZWISKO  FROM UZYTKOWNIK U, OTWARCIE O, SLAWNY_SZACHISTA S WHERE U.ULUBIONE_OTWARCIE = O.ID AND U.ULUBIONY_SZACHISTA = S.ID AND U.NICK=\" ";
+$sql_text = "SELECT U.ID, U.NICK, U.RANKING, U.PREFEROWANY_KOLOR, O.NAZWA, S.IMIE, S.NAZWISKO  FROM UZYTKOWNIK U, OTWARCIE O, SLAWNY_SZACHISTA S WHERE U.ULUBIONE_OTWARCIE = O.ID AND U.ULUBIONY_SZACHISTA = S.ID AND U.NICK='";
 
-$sql_text.=$_REQUEST['nick'];
-$sql_text.="\"";
+$sql_text.=$_REQUEST["nick"];
+$sql_text.="'";
 
 
-
-<?PHP
 $stmt = oci_parse($conn, $sql_text);
 
 // Wykonywanie wyrazenia SQL-owego
@@ -66,17 +61,14 @@ oci_execute($stmt, OCI_NO_AUTO_COMMIT);
     while (($row = oci_fetch_array($stmt, OCI_BOTH))) {
        echo "<tr>";
        echo "<td>${row['ID']}</td>\n";
-       echo '<td><a href="'."uzytkownik.php?nick=".${row['NICK']}. '">${row['NICK']}</a></td>\n';
+       echo "<td><a href=uzytkownik.php?nick=${row['NICK']}>${row['NICK']}</a></td>\n";
        echo "<td>${row['RANKING']}</td>\n";
        echo "<td>${row['PREFEROWANY_KOLOR']}</td>\n";
        echo "<td>${row['NAZWA']}</td>\n";
        echo "<td>${row['IMIE']}</td>\n";
        echo "<td>${row['NAZWISKO']}</td>\n";
 
-       
-
        echo "</tr>\n";
-
 
     }
     ?>

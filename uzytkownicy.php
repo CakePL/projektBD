@@ -82,10 +82,9 @@ oci_execute($stmt, OCI_NO_AUTO_COMMIT);
 
     <?PHP
     while (($row = oci_fetch_array($stmt, OCI_BOTH))) {
-       $txt = "<td><a href=\"uzytkownik.php?nick=". ${row['NICK']} ."\">${row['NICK']}</a></td>\n";
        echo "<tr>";
        echo "<td>${row['ID']}</td>\n";
-       echo $txt;
+       echo "<td><a href=uzytkownik.php?nick=${row['NICK']}>${row['NICK']}</a></td>\n";
        echo "<td>${row['RANKING']}</td>\n";
        echo "<td>${row['PREFEROWANY_KOLOR']}</td>\n";
        echo "<td>${row['NAZWA']}</td>\n";
