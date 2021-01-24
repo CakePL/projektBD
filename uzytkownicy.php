@@ -43,6 +43,10 @@ elseif ($_GET['sort'] == 'RANKING')
 {
     $sql_text .= " ORDER BY U.RANKING";
 }
+elseif($_GET['sort'] == 'PREFEROWANY_KOLOR')
+{
+    $sql_text .= " ORDER BY U.PREFEROWANY_KOLOR";
+}
 elseif($_GET['sort'] == 'NAZWA')
 {
     $sql_text .= " ORDER BY O.NAZWA";
@@ -114,13 +118,20 @@ Wyszukaj Przeciwnika</H3>
   <input type="number" name="WIEK"><br> 
 
   <label for="PLEC">Płeć przeciwnika</label>
-  <input type="text" name="PLEC"><br>
+  <select  name="PLEC">
+  	<option value="mezczyzna"> Mężczyzna</option>
+  	<option value="kobioeta">Kobieta</option>
+  </select><br>
+
 
   <label for="RANKING">Preferowany ranking przeciwnika</label>
   <input type="number" name="RANKING"><br>
 
   <label for="PREFEROWANY_KOLOR">Preferowany Kolor Przeciwnika</label>
-  <input type="text" name="PREFEROWANY_KOLOR"><br>
+  <select name="PREFEROWANY_KOLOR">  	
+  	<option value="czarny"> Czarny</option>
+  	<option value="bialy">Biały</option>
+  </select><br>
 
   <label for="ULUBIONE_OTWARCIE">Ulubione Otwarcie</label>
   <input type="text" name="ULUBIONE_OTWARCIE"><br>
@@ -129,7 +140,13 @@ Wyszukaj Przeciwnika</H3>
   <input type="text" name="ULUBIONY_SZACHISTA"><br>
 
   <label for="PREF_PORA">Preferowana pora rozgrywek</label>
-  <input type="text" name="PREF_PORA"><br>
+  <select name="PREF_PORA">
+   	<option value="rano"> Rano</option>
+  	<option value="poludnie">Południe</option>
+  	<option value="popoludnie"> Popołudnie</option>
+  	<option value="wieczor">Wieczór</option>
+  	<option value="noc">Noc</option>
+  </select><br>
 
   <button type="submit" formaction="wyszukiwanie.php">Wyszukaj</button>
 

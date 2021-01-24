@@ -58,7 +58,6 @@ oci_execute($stmt, OCI_NO_AUTO_COMMIT);
       <th>Ulubiony </th>
       <th>Szachista</th>
       
-
     </tr>
 
     <?PHP
